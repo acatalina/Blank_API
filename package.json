@@ -1,0 +1,11 @@
+{
+  "name": "blank",
+  "version": "1.0.0",
+  "description": "places reviews and discovery",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha ./spec/*"
+  },
+  "author": "drasek",
+  "license": "ISC"
+}
