@@ -2,10 +2,19 @@
   "name": "blank",
   "version": "1.0.0",
   "description": "places reviews and discovery",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
-    "test": "mocha ./spec/*"
+    "test": "mocha ./spec/*",
+    "dev": "nodemon server.js"
   },
   "author": "drasek",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "bluebird": "^3.5.0",
+    "express": "^4.15.3",
+    "pg-promise": "^5.8.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.11.0"
+  }
 }
