@@ -4,7 +4,7 @@ CREATE DATABASE blank_test;
 
 CREATE TABLE areas(
   id SERIAL PRIMARY KEY,
-  name VARCHAR
+  name VARCHAR NOT NULL
 );
 
 CREATE TABLE restaurants(

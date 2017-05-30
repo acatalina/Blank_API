@@ -2,6 +2,7 @@ const router = require('express').Router();
 const get = require('../controllers/get');
 const post = require('../controllers/post');
 const bodyParser = require('body-parser');
+const errorHandling = require('../error/index');
 
 router.get('/', (req, res) => res.status(200).send({status: 'OK'}));
 
@@ -20,5 +21,7 @@ router.post('/restaurants/:id/comments', post.comment);
 router.post('/restaurants/:id/ratings', post.rating);
 
 router.use('*', (req, res) => res.status(404).send({reason: 'NOT FOUND'}));
+
+router.use(errorHandling);
 
 module.exports = router;

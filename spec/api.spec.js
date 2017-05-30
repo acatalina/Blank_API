@@ -145,6 +145,21 @@ describe('BLANK API', () => {
           done();
         });
     });
+
+    it('handles invalid queries', done => {
+      const newArea = {};
+
+      request(server)
+        .post('/api/areas')
+        .send(newArea)
+        .expect(400)
+        .expect({reason: 'Invalid query'})
+        .end(err => {
+          if (err) throw err;
+
+          done();
+        });
+    });
   });
 
   describe('POST /areas/:area_id/restaurants', () => {
@@ -176,6 +191,22 @@ describe('BLANK API', () => {
           done();
         });
     });
+
+    it('handles invalid queries', done => {
+      const newRestaurant = {name: 'dummy'};
+      const area_id = 1;
+      
+      request(server)
+        .post(`/api/areas/${area_id}/restaurants`)
+        .send(newRestaurant)
+        .expect(400)
+        .expect({reason: 'Invalid query'})
+        .end(err => {
+          if (err) throw err;
+
+          done();
+        });
+    });
   });
 
   describe('POST /restaurants/:restaurant_id/comments', () => {
@@ -200,6 +231,22 @@ describe('BLANK API', () => {
           done();
         });
     });
+
+    it('handles invalid queries', done => {
+      const newComment = {};
+      const restaurant_id = 1;
+      
+      request(server)
+        .post(`/api/restaurants/${restaurant_id}/comments`)
+        .send(newComment)
+        .expect(400)
+        .expect({reason: 'Invalid query'})
+        .end(err => {
+          if (err) throw err;
+
+          done();
+        });
+    });
   });
 
   describe('POST /restaurants/:restaurant_id/ratings', () => {
@@ -221,6 +268,22 @@ describe('BLANK API', () => {
           expect(res.body.rating).to.haveOwnProperty('restaurant_id');
           expect(res.body.rating.restaurant_id).to.equal(restaurant_id);
           expect(res.body.rating).to.haveOwnProperty('created_at');
+          done();
+        });
+    });
+
+    it('handles invalid queries', done => {
+      const newRating = {};
+      const restaurant_id = 1;
+      
+      request(server)
+        .post(`/api/restaurants/${restaurant_id}/ratings`)
+        .send(newRating)
+        .expect(400)
+        .expect({reason: 'Invalid query'})
+        .end(err => {
+          if (err) throw err;
+
           done();
         });
     });
