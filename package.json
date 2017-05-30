@@ -1,11 +1,13 @@
 {
-  "name": "blank",
+  "name": "blank-api",
   "version": "1.0.0",
-  "description": "places reviews and discovery",
+  "description": "places reviews and discovery API",
   "main": "server.js",
   "scripts": {
     "test": "psql -f ./spec/blank_test.sql && mocha ./spec/*.spec.js && psql -f ./spec/drop_blank_test.sql",
-    "dev": "nodemon server.js"
+    "dev": "nodemon server.js",
+    "db-dev": "psql -f ./DB/blank_db.sql && psql -f ./DB/seed.sql",
+    "start": "node server.js"
   },
   "author": "drasek",
   "license": "ISC",
