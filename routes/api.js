@@ -17,6 +17,7 @@ router.use(bodyParser.urlencoded({extended: true}));
 router.post('/areas', post.areas);
 router.post('/areas/:id/restaurants', post.restaurant);
 router.post('/restaurants/:id/comments', post.comment);
+router.post('/restaurants/:id/ratings', post.rating);
 
 router.use('*', (req, res) => res.status(404).send({reason: 'NOT FOUND'}));
 

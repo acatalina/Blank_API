@@ -202,4 +202,28 @@ describe('BLANK API', () => {
     });
   });
 
+  describe('POST /restaurants/:restaurant_id/ratings', () => {
+    it('posts a new rating and returns the created entity', (done) => {
+      const newRating = {rating: 5};
+      const restaurant_id = 1;
+
+      request(server)
+        .post(`/api/restaurants/${restaurant_id}/ratings`)
+        .send(newRating)
+        .expect(201)
+        .end((err, res) => {
+          if (err) throw err;
+
+          expect(res.body).to.haveOwnProperty('rating');
+          expect(res.body.rating).to.haveOwnProperty('id');
+          expect(res.body.rating).to.haveOwnProperty('rating');
+          expect(res.body.rating.rating).to.equal(newRating.rating);
+          expect(res.body.rating).to.haveOwnProperty('restaurant_id');
+          expect(res.body.rating.restaurant_id).to.equal(restaurant_id);
+          expect(res.body.rating).to.haveOwnProperty('created_at');
+          done();
+        });
+    });
+  });
+
 });
