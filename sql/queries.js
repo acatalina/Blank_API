@@ -8,16 +8,21 @@ const sql = file => {
 };
 
 module.exports = {
-  restaurants: {
-    add: sql('restaurants/add.sql')
-  },
   areas: {
+    get: sql('areas/get.sql'),
     add: sql('areas/add.sql')
   },
+  restaurants: {
+    get: sql('restaurants/get.sql'),
+    getByArea: sql('restaurants/getByArea.sql'),
+    add: sql('restaurants/add.sql')
+  },
   comments: {
+    get: sql('comments/get.sql'),
     add: sql('comments/add.sql')
   },
   ratings: {
+    get: sql('ratings/get.sql'),
     add: sql('ratings/add.sql')
   }
 };
