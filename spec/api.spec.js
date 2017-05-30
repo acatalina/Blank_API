@@ -126,4 +126,80 @@ describe('BLANK API', () => {
         });
     });
   });
+
+  describe('POST /areas', () => {
+    it('posts a new area and returns the created entity', (done) => {
+      const newArea = {name: 'didsbury'};
+      
+      request(server)
+        .post('/api/areas')
+        .send(newArea)
+        .expect(201)
+        .end((err, res) => {
+          if (err) throw err;
+
+          expect(res.body).to.haveOwnProperty('area');
+          expect(res.body.area).to.haveOwnProperty('id');
+          expect(res.body.area).to.haveOwnProperty('name');
+          expect(res.body.area.name).to.equal(newArea.name);
+          done();
+        });
+    });
+  });
+
+  describe('POST /areas/:area_id/restaurants', () => {
+    it('posts a new restaurant and returns the created entity', (done) => {
+      const area = 1;
+      const newRestaurant = {
+        name: 'dummy',
+        cuisine: 'cuisine',
+        website: 'website'
+      };
+
+      request(server)
+        .post(`/api/areas/${area}/restaurants`)
+        .send(newRestaurant)
+        .expect(201)
+        .end((err, res) => {
+          if (err) throw err;
+
+          expect(res.body).to.haveOwnProperty('restaurant');
+          expect(res.body.restaurant).to.haveOwnProperty('id');
+          expect(res.body.restaurant).to.haveOwnProperty('name');
+          expect(res.body.restaurant.name).to.equal(newRestaurant.name);
+          expect(res.body.restaurant).to.haveOwnProperty('area_id');
+          expect(res.body.restaurant.area_id).to.equal(area);
+          expect(res.body.restaurant).to.haveOwnProperty('cuisine');
+          expect(res.body.restaurant.cuisine).to.equal(newRestaurant.cuisine);
+          expect(res.body.restaurant).to.haveOwnProperty('website');
+          expect(res.body.restaurant.website).to.equal(newRestaurant.website);
+          done();
+        });
+    });
+  });
+
+  describe('POST /restaurants/:restaurant_id/comments', () => {
+    it('posts a new comment and returns the created entity', (done) => {
+      const newComment = {body: 'awesome'};
+      const restaurant_id = 1;
+
+      request(server)
+        .post(`/api/restaurants/${restaurant_id}/comments`)
+        .send(newComment)
+        .expect(201)
+        .end((err, res) => {
+          if (err) throw err;
+
+          expect(res.body).to.haveOwnProperty('comment');
+          expect(res.body.comment).to.haveOwnProperty('id');
+          expect(res.body.comment).to.haveOwnProperty('body');
+          expect(res.body.comment.body).to.equal(newComment.body);
+          expect(res.body.comment).to.haveOwnProperty('restaurant_id');
+          expect(res.body.comment.restaurant_id).to.equal(restaurant_id);
+          expect(res.body.comment).to.haveOwnProperty('created_at');
+          done();
+        });
+    });
+  });
+
 });

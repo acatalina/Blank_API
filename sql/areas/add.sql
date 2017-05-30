@@ -1,0 +1,1 @@
+INSERT INTO areas(name) VALUES($1) RETURNING *;

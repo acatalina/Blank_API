@@ -1,0 +1,1 @@
+INSERT INTO ratings(restaurant_id, rating) VALUES($1, $2) RETURNING *;

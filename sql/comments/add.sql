@@ -1,0 +1,1 @@
+INSERT INTO comments(restaurant_id, body) VALUES($1, $2) RETURNING *;
