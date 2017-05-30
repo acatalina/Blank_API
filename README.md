@@ -17,6 +17,7 @@ To deploy the API, make sure you have deployed first a database and set environm
 ## Built with
 
 * Express JS
+* PostgreSQL
 * pg-promises
 * bluebird
 
